@@ -5,3 +5,29 @@
     justify-content: space-between;
     flex-wrap: wrap;
 }
+
+.backButton {
+    position: fixed;
+    right: 150px;
+    bottom: 70px;
+    z-index: 9999;
+    width: 80px;
+    height: 32px;
+    border: none;
+    border-radius: 2px;
+    font-family: montserrat, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    background-color: #002452;
+    color: white;
+    transition: all ease 0.5s;
+}
+
+.backButton:hover {
+    transform: scale(1.1);
+}
+
+.backButton:active {
+    transform: scale(0.9);
+    color: beige;
+}

@@ -8,7 +8,7 @@ const Form = (props) => {
     const { searchMovie } = props;
 
     const { register, handleSubmit, reset } = useForm({
-        mode: 'onBlur'
+        mode: 'onSubmit'
     });
 
     const onSubmit = ({ search }) => {
@@ -22,7 +22,9 @@ const Form = (props) => {
             className={classes.searchInput}
             type="text"
             placeholder='Искать фильм'
-            {...register("search")}
+            {...register("search", {
+                required: true,
+            })}
         />
         <button className={classes.searchButton} type="submit">Найти</button>
     </form>

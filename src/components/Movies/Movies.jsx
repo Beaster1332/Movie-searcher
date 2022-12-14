@@ -5,16 +5,24 @@ import classes from './Movies.module.css';
 
 const Movies = (props) => {
 
-    const { movies, setMovies } = props;
+    const {
+        movies,
+        setMovies,
+        onMainPage,
+        backToMain
+    } = props;
 
     useEffect(() => {
-        setMovies(getMoviesApiUrl);
-    }, [setMovies]);
+        onMainPage && setMovies(getMoviesApiUrl);
+    }, [setMovies, onMainPage]);
 
     let moviesItems = movies.map(m => <MovieItem key={m.filmId} {...m} />);
 
     return <div className={classes.mainMovieContainer}>
         {moviesItems}
+        {
+            !onMainPage && <button className={classes.backButton} onClick={() => backToMain()}>Назад</button>
+        }
     </div>
 }
 

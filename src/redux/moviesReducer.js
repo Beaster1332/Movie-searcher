@@ -1,7 +1,12 @@
+import { getMoviesApiUrl } from "./URL/URL";
+
 const SET_MOVIES = 'movies/SET_MOVIES';
+const SET_KEYWORD_MOVIES = 'movies/SET_KEYWORD_MOVIES';
+const BACK_TO_MAIN_PAGE = 'movies/BACK_TO_MAIN_PAGE';
 
 let initialState = {
-    movies: []
+    movies: [],
+    onMainPage: true,
 };
 
 let moviesReducer = (state = initialState, action) => {
@@ -11,12 +16,26 @@ let moviesReducer = (state = initialState, action) => {
                 ...state,
                 movies: [...state.movies, ...action.movies],
             }
+        case SET_KEYWORD_MOVIES:
+            return {
+                ...state,
+                movies: [...action.movies],
+                onMainPage: false
+            }
+        case BACK_TO_MAIN_PAGE:
+            return {
+                ...state,
+                movies: [],
+                onMainPage: true
+            }
         default:
             return state
     }
 };
 
 export const setMoviesAC = (movies) => ({ type: SET_MOVIES, movies });
+export const setKeywordMoviesAC = (movies) => ({ type: SET_KEYWORD_MOVIES, movies });
+export const backToMainPageAC = () => ({ type: BACK_TO_MAIN_PAGE });
 
 export const getMoviesTC = (url) => {
     return async dispatch => {
@@ -28,7 +47,11 @@ export const getMoviesTC = (url) => {
         })
             .then(res => res.json())
             .then(json => {
-                dispatch(setMoviesAC(json.films));
+                if (url === getMoviesApiUrl) {
+                    dispatch(setMoviesAC(json.films));
+                } else {
+                    dispatch(setKeywordMoviesAC(json.films));
+                }
             })
     }
 }

@@ -22,5 +22,15 @@
     font-family: montserrat, sans-serif;
     font-size: 12px;
     font-weight: 600;
-    background-color: azure;
+    background-color: white;
+    transition: all ease 0.5s;
+}
+
+.searchButton:hover {
+    transform: scale(1.1);
+}
+
+.searchButton:active {
+    transform: scale(0.9);
+    color: grey;
 }
