@@ -1,0 +1,75 @@
+.dialogContainer {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.dialogContent {
+    width: 650px;
+    height: 400px;
+    padding: 30px 50px;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.dialogMovieImgHolder {
+    display: flex;
+    justify-content: center;
+}
+
+.dialogFilmImg {
+    height: 250px;
+}
+
+.dialogMovieText {
+    height: 250px;
+    padding: 25px 0 25px 25px;
+    border-left: 1px dotted #002452;
+}
+
+.nameHolder {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.genreHolder {
+    margin-top: 15px;
+    font-style: italic;
+}
+
+.closeButton {
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    width: 80px;
+    height: 32px;
+    border: none;
+    border-radius: 2px;
+    font-family: montserrat, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    background-color: #002452;
+    color: white;
+    transition: all ease 0.5s;
+}
+
+.closeButton:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.closeButton:active {
+    transform: scale(0.9);
+    color: beige;
+}

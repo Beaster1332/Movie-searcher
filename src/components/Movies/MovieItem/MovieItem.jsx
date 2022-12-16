@@ -1,18 +1,29 @@
 import React from "react";
+import { connect } from "react-redux";
+import { openDialogAC } from "../../../redux/moviesReducer";
+import MovieItemDialog from "./MovieItemDialog/MovieItemDialog";
 import classes from './MovieItem.module.css';
 
 const MovieItem = (props) => {
 
-    const { nameRu, countries, genres, posterUrlPreview } = props;
+    const {
+        nameRu,
+        countries,
+        genres,
+        posterUrlPreview,
+        filmId,
+        movieOnDialog,
+        openDialog
+    } = props;
 
     const genresItems = genres.map(g => `${g.genre} `);
-    const countriesItems = countries.map(c => `${c.country} `)
+    const countriesItems = countries.map(c => `${c.country} `);
 
     return <div className={classes.movieItem}>
-        <div className={classes.imgHolder}>
+        <div onClick={() => openDialog(filmId)} className={classes.imgHolder}>
             <img className={classes.img} src={posterUrlPreview} alt={nameRu} />
         </div>
-        <div className={classes.infoHolder}>
+        <div onClick={() => openDialog(filmId)} className={classes.infoHolder}>
             <div>
                 <h3>
                     {nameRu}
@@ -29,7 +40,28 @@ const MovieItem = (props) => {
                 </p>
             </div>
         </div>
+        {
+            movieOnDialog.open && movieOnDialog.filmId === filmId ?
+                <MovieItemDialog
+                    name={nameRu}
+                    image={posterUrlPreview}
+                    genres={genresItems}
+                /> :
+                null
+        }
     </div>
 }
 
-export default MovieItem;
+const mapStateToProps = (state) => {
+    return {
+        movieOnDialog: state.moviesReducer.movieOnDialog,
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        openDialog: (filmId) => dispatch(openDialogAC(filmId))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieItem);

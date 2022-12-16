@@ -6,6 +6,16 @@
 
 .imgHolder {
     height: 375px;
+    transition: all ease 0.5s;
+}
+
+.imgHolder:hover {
+    cursor: pointer;
+    transform: scale(1.03);
+}
+
+.imgHolder:active {
+    transform: scale(0.97);
 }
 
 .img {
@@ -19,8 +29,18 @@
     padding-top: 10px;
     text-align: center;
     border-radius: 5px;
-    border-left: 1px solid red;
-    border-right: 1px solid red;
+    border-left: 1px solid #002452;
+    border-right: 1px solid #002452;
+    transition: all ease 0.5s;
+}
+
+.infoHolder:hover {
+    cursor: pointer;
+    transform: scale(1.03);
+}
+
+.infoHolder:active {
+    transform: scale(0.97);
 }
 
 .genres {

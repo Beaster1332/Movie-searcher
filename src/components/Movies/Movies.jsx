@@ -20,9 +20,8 @@ const Movies = (props) => {
 
     return <div className={classes.mainMovieContainer}>
         {moviesItems}
-        {
-            !onMainPage && <button className={classes.backButton} onClick={() => backToMain()}>Назад</button>
-        }
+        {!onMainPage &&
+        <button className={classes.backButton} onClick={() => backToMain()}>Назад</button>}
     </div>
 }
 
